@@ -1,0 +1,41 @@
+.archive {
+  margin-top: 10vh;
+}
+.archive {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.article:hover {
+  margin: 0 15px;
+  transform: scale(1.01);
+}
+@media (max-width: 911px) {
+  .archive {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .article {
+    margin-bottom: 2em;
+  }
+}
+@media (max-width: 650px) {
+  .archive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .article {
+    margin-bottom: 2em;
+  }
+}
+@media (max-width: 400px) {
+  .archive {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .article {
+    margin-bottom: 2em;
+  }
+}
