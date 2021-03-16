@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Help</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "quiz/main.css" %}'>
+    
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="{% url 'quizpage' %}">Quiz</a></li>
+            <li><a href="{% url 'aboutpage' %}">About</a></li>
+            <li><a href="{% url 'contactpage' %}">Contacts</a></li>
+            <li><a href="{% url 'helppage' %}">Help</a></li>
+        </ul>
+    </div>
+
+    <div class="help">
+        <ul>
+            <li>Login into your account to start the quiz</li>
+            <li>The quiz is of 10 minutes , timer is available</li>
+            <li>The timer starts after you log into your account</li>
+            <li>There are 10 questions</li>
+            <li>Write the asnswer for each and click next for next question</li>
+            <li>Click in submit button after completing the test</li>
+            <li>After the timer ends your quiz will be automatically submitted</li>
+        </ul>
+    </div>
+
+
+
+    
+</body>
+</html>
