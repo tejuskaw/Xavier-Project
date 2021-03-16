@@ -6,8 +6,6 @@ xavier/ - Final project
 new updates/ - assets to be installed
 
 
-
-
 Xavier Student Center 
 
 
