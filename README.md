@@ -36,3 +36,5 @@ Tushar Kumar Shiva 19103121  - Backend
 Tejus Kaw 19103104  - Fron end
 Devendu Negi 19103101 - Database management and backed support
 Priyanshu Priyadarshi 1910312 - Front end
+
+Colour Palette : https://colorhunt.co/palette/66129
