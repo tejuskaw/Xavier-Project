@@ -1,19 +1,24 @@
 * {
   box-sizing: border-box;
 }
-.active {
-  color: white;
-  background-color: black;
-}
+
 a {
   cursor: pointer;
 }
 .nav {
   top: 0;
+  position: fixed;
   height: 10vh;
   left: 0px;
   width: 100%;
-  background: linear-gradient(#9fc9e6, #000000);
+  background-image: linear-gradient(
+    to bottom,
+    #841bd5,
+    #007fff,
+    #00b3ff,
+    #00dbf4,
+    #0cfbc7
+  );
   z-index: 100;
 }
 .nav > .nav-header {
