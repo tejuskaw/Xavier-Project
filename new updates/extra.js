@@ -20,8 +20,7 @@ export function fileChange(e) {
 }
 
 export function post(e) {
-  e.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
   setTimeout(function () {
-    e.innerHTML = "Post";
+    e.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
   }, 1000);
 }

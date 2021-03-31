@@ -1,8 +1,18 @@
 import React from "react";
 import "./addpost.css";
-import { post } from "./extra";
+//import { post } from "./extra";
 import RichTextEditor from "./Hi";
 export default class Addposts extends React.Component {
+  state = {
+    send: false,
+  };
+  post = () => {
+    this.setState({ send: true });
+    setTimeout(() => {
+      this.setState({ send: false });
+    }, 1000);
+  };
+
   render = () => {
     return (
       <div id="wrapper">
@@ -16,8 +26,12 @@ export default class Addposts extends React.Component {
           <RichTextEditor />
           <div id="footer">
             <div id="footer-left">
-              <button className="btn btn-primary" onClick={post(this)}>
-                Post
+              <button className="btn btn-primary" onClick={() => this.post()}>
+                {this.state.send ? (
+                  <i class="fas fa-spinner fa-spin"></i>
+                ) : (
+                  "Post"
+                )}
               </button>
               {/*<i class="fas fa-spinner fa-spin"></i>*/}
               <input

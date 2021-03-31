@@ -42,14 +42,14 @@ a {
   font-size: 18px;
 }
 
-.nav > .nav-links > a {
+.nav > .nav-links > div {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
   color: #efefef;
 }
 
-.nav > .nav-links > a:hover {
+.nav > .nav-links > div:hover {
   background-color: white;
   color: black;
 }
@@ -98,7 +98,7 @@ a {
     z-index: 100;
     left: 0px;
   }
-  .nav > .nav-links > a {
+  .nav > .nav-links > div {
     display: block;
     width: 100%;
     z-index: 100;

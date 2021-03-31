@@ -16,46 +16,41 @@ class App extends React.Component {
           </label>
         </div>
         <div className="nav-links">
-          <a
-            href="#"
+          <div
             onClick={() => {
               this.props.OnStudyMaterial();
             }}
           >
             Study Material
-          </a>
-          <a
-            href="#"
+          </div>
+          <div
             onClick={() => {
               this.props.announcement();
             }}
           >
             Announcements
-          </a>
-          <a
-            href="#"
+          </div>
+          <div
             onClick={() => {
               this.props.OnPractice();
             }}
           >
             Practice
-          </a>
-          <a
-            href="#"
+          </div>
+          <div
             onClick={() => {
               this.props.Onaddposts();
             }}
           >
             ADD
-          </a>
-          <a
-            href="#"
+          </div>
+          <div
             onClick={() => {
               this.props.Onaddposts();
             }}
           >
             Account
-          </a>
+          </div>
         </div>
       </div>
     );
