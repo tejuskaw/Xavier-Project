@@ -28,7 +28,7 @@ export default class Login extends React.Component {
               <h1 style={{ marginBottom: "35px" }}>Sign in</h1>
               <input className="input" type="email" placeholder="Email" />
               <input className="input" type="password" placeholder="Password" />
-              <a href="#">Forgot your password?</a>
+              <span>Forgot your password?</span>
               <button>Sign In</button>
             </form>
           </div>

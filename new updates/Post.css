@@ -24,11 +24,11 @@ body {
   color: #666;
 }
 
-a {
+span {
   text-decoration: none;
   color: #3498db;
 }
-a:hover {
+span:hover {
   color: #2980b9;
 }
 

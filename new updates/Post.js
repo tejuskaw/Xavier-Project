@@ -8,18 +8,18 @@ export default class Post extends Component {
           <div className="card__image border-tlr-radius">
             <img
               src={this.props.image}
-              alt="image"
+              alt="inside"
               className="border-tlr-radius"
             />
           </div>
           <div className="card__content card__padding">
             <div className="card__meta">
-              <a href="#">{this.props.heading}</a>
+              <span>{this.props.heading}</span>
               <time>{this.props.date}</time>
             </div>
             <article className="card__article">
               <h2>
-                <a href="#">{this.props.subheading}</a>
+                <span>{this.props.subheading}</span>
               </h2>
               <p>
                 {this.props.description.length > 30
@@ -28,9 +28,7 @@ export default class Post extends Component {
               </p>
               {this.props.description.length > 30 ? (
                 <span>
-                  <a href="#" style={{ color: "blue" }}>
-                    Read More
-                  </a>
+                  <span style={{ color: "blue" }}>Read More</span>
                 </span>
               ) : (
                 ""
@@ -41,7 +39,7 @@ export default class Post extends Component {
             <div className="card__author">
               <img src={this.props.authorimg} alt="user" />
               <div className="card__author-content">
-                By <a href="#">{this.props.author}</a>
+                By <span>{this.props.author}</span>
               </div>
             </div>
           </div>
