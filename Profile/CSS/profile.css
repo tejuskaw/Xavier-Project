@@ -1,0 +1,124 @@
+/* Profile CSS */
+
+* {
+    /* CSS Reset */
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#navbar {
+    display: flex;
+    background-color: #a6e3e9;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#navbar img {
+    /* logo image */
+    width: 80px;
+    padding: 10px 24px;
+}
+
+.item {
+    /* list class */
+    display: flex;
+    list-style: none;
+}
+
+.item a {
+    /* anchor inside list */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 24px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.item a:hover {
+    background-color: #71c9ce;
+    color: black;
+    border-radius: 6px;
+}
+
+
+/* Profile-Section */
+
+.container {
+    height: 400px;
+    background-color: #e3fdfd;
+    border-radius: 40px;
+    margin: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+
+/* Flex- itmes & formatting */
+
+.box {
+    display: inline-block;
+    border: 10px solid white;
+    border-radius: 20px;
+    box-shadow: -3px -3px 0px 4px rgb(211, 226, 205);
+    width: 350px;
+    height: 310px;
+    margin: 30px 40px;
+    text-align: center;
+}
+
+.box h3 {
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 4px;
+}
+
+.box ul li {
+    padding : 8px 3px;
+    list-style-type: square ;
+}
+
+/* Profile-Pic Box */
+
+#box-0 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+#box-0 img {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+}
+
+
+/* Detail Box */
+
+#box-d {
+    /* reserved for later  */
+}
+
+#box-d ul li {
+    text-align: start;
+    margin-left: 57px;
+}
+
+
+/* Announcement Box  */
+
+#box-a {
+    width: 100%;
+    height: 330px;
+}
+
