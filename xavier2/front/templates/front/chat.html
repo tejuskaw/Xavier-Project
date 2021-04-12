@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chat</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body onload="document.getElementsByClassName('comment')[document.getElementsByClassName('comment').length-1].scrollIntoView({ behavior: 'smooth', block: 'end'});">
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "front/main.css" %}'>
+    {% if request.user.is_staff %}
+    <div id="custom-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url('{{request.user.profile.bg.url}}'); opacity: 1;"></div>
+    {% endif %}
+
+<input type="button" class= "toggle" id="font_color" value="F" style="color:blue"
+       onclick="toggle_edit(event)">
+
+
+
+
+
+     <div id="chat-box">
+
+
+        <div id="chat-log" >
+                {% for comment in comments %}
+                    <div class="comment {% if comment.author == request.user %} right {% else %} left {% endif %}">
+                        <div id="author" style="color: {{comment.author.profile.color}}">{{comment.author}}
+                            <div class="time">@{{comment.time|date:"m/d/y"}} {{comment.time|time:"h:i a"}}</div>
+                        </div>
+                        <br/>
+                        <div id="content" class="black">{{comment.content}}</div>
+                    </div>
+                {% endfor %}
+            </div><br>
+
+    </div>
+
+    <div class="input-box">
+
+            <form method="post">{% csrf_token %}
+                       {{send}}
+                    <button type="submit" name='action' value='sending' id="send" >Send</button>   
+                    
+            </form>
+
+        </div>
+    
+
+
+    <script src='{% static "front/main.js" %}'></script>
+    <script type="text/javascript">
+
+        function toggle_edit(e) {
+            
+            if (document.querySelector('#content').className == 'black'){
+     
+
+            for (var i = document.getElementsByClassName('comment').length - 1; i >= 0; i--) {
+                document.getElementsByClassName('comment')[i].querySelector('#content').className = 'white'   
+            }
+      
+            }
+            else{
+                for (var i = document.getElementsByClassName('comment').length - 1; i >= 0; i--) {
+                document.getElementsByClassName('comment')[i].querySelector('#content').className = 'black'   
+            }
+            }
+        }
+
+
+
+       </script>
+</body>
+</html>
+
