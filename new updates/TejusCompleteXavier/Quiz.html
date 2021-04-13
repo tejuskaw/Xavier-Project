@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/Events.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
     <link
       rel="stylesheet"
@@ -14,8 +13,7 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     />
-    <link rel="stylesheet" href="./css/material.css" />
-    <link rel="stylesheet" href="./css/study.css" />
+    <link rel="stylesheet" href="./css/quizstart.css" />
     <title>Xavier</title>
   </head>
   <body>
@@ -56,7 +54,7 @@
           <div class="sidebar-menu">
             <ul>
               <li>
-                <a href="./home.html" style="color: white"
+                <a href="./home.html"
                   ><i class="fa fa-home" aria-hidden="true"></i>
                   <span>Home</span>
                 </a>
@@ -82,7 +80,7 @@
               </li>
 
               <li>
-                <a href="./Quiz.html">
+                <a href="./Quiz.html" style="color: white">
                   <i class="fas fa-user-graduate"></i>
                   <span>Quiz</span>
                 </a>
@@ -103,15 +101,48 @@
             >
           </div>
         </div>
-        <!-- sidebar-content  -->
       </nav>
       <!-- sidebar-wrapper  -->
       <main class="page-content">
         <div class="container">
-          <h1>Home</h1>
+          <div class="outside">
+            <div class="info_box">
+              <div
+                class="info_title"
+                style="background-color: rgb(55, 212, 233)"
+              >
+                <span>Some Rules of this quiz</span>
+              </div>
+              <div
+                class="info_list"
+                style="
+                  background-color: rgb(150, 241, 163);
+                  border-top: 2px solid black;
+                  border-bottom: 2px solid black;
+                "
+              >
+                <div class="info">
+                  1.You will have only 10 minutes for the quiz
+                </div>
+                <div class="info">
+                  2.Once you select any answer,you can't reselect
+                </div>
+                <div class="info">
+                  3.You can't select any option after time goes off
+                </div>
+                <div class="info">4.You will get 15 questions in total</div>
+              </div>
+              <div class="buttons" style="background-color: rgb(55, 212, 233)">
+                <button class="quit">Exit Quiz</button>
+                <button class="restart">Continue</button>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
+      <!-- page-content" -->
     </div>
+    <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
