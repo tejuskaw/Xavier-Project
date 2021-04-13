@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Comment
+from .models import Comment , Announcement , Profile
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django import forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import  AuthenticationForm , UserCreationForm
@@ -33,14 +34,26 @@ class SendComment(forms.ModelForm):
 
 
 
-def discuss(request):
+def main(request):
 
 	if not(request.user.is_authenticated):
 		  return redirect('signpage')
 
 
+	announcements = Announcement.objects.all()[len(Announcement.objects.all())-20:
+					] if len(Announcement.objects.all()) > 21 else Announcement.objects.all()
 
-	return HttpResponse(' <p> Announcements here </p>')
+	announcements2 = []
+	print(announcements)
+
+	for i in range(len(announcements)-1 , -1 , -1):
+		announcements2.append(announcements[i])
+
+	print(announcements2)
+
+
+
+	return render(request, 'front/main.html' , {'announcements' : announcements2})
 
 
 
@@ -62,7 +75,7 @@ def sign(request):
         	    user = authenticate(username=username, password=password)
         	    if user is not None:
         	        login(request, user)
-        	        return redirect('chatpage')
+        	        return redirect('mainpage')
         	    else:
         	        form1.error_messages['nouser']= _('No such user found')
         	        raise forms.ValidationError(
@@ -122,3 +135,10 @@ def chat(request):
 
 
     
+
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('mainpage')

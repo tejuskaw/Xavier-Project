@@ -24,6 +24,7 @@ class Profile(models.Model):
 	bg = models.ImageField(default= 'default.jpg'  , upload_to = 'bg_pics')
 	color = models.CharField(max_length=7, default='#000000')
 
+
 	def __str__(self):
 		return f'{self.user.username} Profile'
 
@@ -35,3 +36,14 @@ class Profile(models.Model):
 		if img.height >300 or img.width > 300 :
 			img.thumbnail((300,300))
 			img.save(self.image.path)
+
+
+
+
+class Announcement(models.Model):
+	content = models.TextField()
+	time= models.DateTimeField(auto_now_add=True)
+	author = models.ForeignKey(User , on_delete = models.CASCADE)
+
+	def __str__(self):
+		return f'{self.author} : {self.content}'
