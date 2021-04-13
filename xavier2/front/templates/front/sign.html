@@ -15,16 +15,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign in</title>
   </head>
-  <body>
+  <body onload = 'change(event)' >
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form action="#">
+
+
+
+
+
+        <form method="post">{% csrf_token %}
           <h1 style="margin-bottom: 50px">Create Account</h1>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          {{form2}}
+          <button type="submit" name="action" value="signup" >Sign Up</button>
         </form>
+
+
+
+
+
+
       </div>
       <div class="form-container sign-in-container">
 
@@ -33,7 +42,7 @@
 
         <form  method="post">{% csrf_token %}
           <h1 style="margin-bottom: 50px">Sign in</h1>
-          {{ form }}
+          {{ form1 }}
           <button type="submit" name="action" value="login">Sign In</button>
         </form>
 
@@ -61,15 +70,68 @@
       </div>
     </div>
 
-    <script src='{% static "front/login.js" %}'></script>
     <script type="text/javascript">
-      
-let user = document.getElementById('id_username') ;
-if (user !== null){document.querySelector('#id_username').placeholder = 'Username'
+
+
+      const signUpButton = document.getElementById("signUp");
+const signInButton = document.getElementById("signIn");
+const container = document.getElementById("container");
+
+
+
+signUpButton.addEventListener("click", function(e){
+  container.classList.add("right-panel-active")
+  document.querySelector('title').innerHTML = 'Sign up'
+} );
+
+signInButton.addEventListener("click", function(e){
+  container.classList.remove("right-panel-active")
+  document.querySelector('title').innerHTML = 'Sign in'
+} );
+
+ 
+
+
+function change(e) {
+
+  let user1 = document.querySelector('.sign-in-container form #id_username')
+if (user1.value === ''){ container.classList.add("right-panel-active")
+  document.querySelector('title').innerHTML = 'Sign up'
 }
 
-let pass1 = document.getElementById('id_password') ;
-if (pass1 !== null){document.querySelector('#id_password').placeholder = 'Password'
+let user2 = document.querySelector('.sign-up-container form #id_username')
+if (user2.value === ''){container.classList.remove("right-panel-active")
+  document.querySelector('title').innerHTML = 'Sign in'
+}
+
+}
+
+
+
+
+
+let user1 = document.querySelector('.sign-up-container form #id_username')
+if (user1 !== null){document.querySelector('.sign-up-container form #id_username').placeholder = 'Username'
+}
+
+let user2 = document.querySelector('.sign-in-container form #id_username')
+if (user2 !== null){document.querySelector('.sign-in-container form #id_username').placeholder = 'Username'
+}
+
+let pass = document.getElementById('id_password') ;
+if (pass !== null){document.querySelector('#id_password').placeholder = 'Password'
+}
+
+let email = document.getElementById('id_email') ;
+if (email !== null){document.querySelector('#id_email').placeholder = 'Email'
+}
+
+let pass1 = document.getElementById('id_password1') ;
+if (pass1 !== null){document.querySelector('#id_password1').placeholder = 'Password'
+}
+
+let pass2 = document.getElementById('id_password2') ;
+if (pass2 !== null){document.querySelector('#id_password2').placeholder = 'Password confirmation'
 }
 
 
