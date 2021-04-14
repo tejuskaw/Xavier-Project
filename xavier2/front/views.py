@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Comment , Announcement , Profile
+from .models import Comment , Announcement , Profile , Discussion
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -44,16 +44,45 @@ def main(request):
 					] if len(Announcement.objects.all()) > 21 else Announcement.objects.all()
 
 	announcements2 = []
-	print(announcements)
+	
 
 	for i in range(len(announcements)-1 , -1 , -1):
 		announcements2.append(announcements[i])
 
-	print(announcements2)
 
 
 
 	return render(request, 'front/main.html' , {'announcements' : announcements2})
+
+
+
+
+
+
+def discuss(request):
+
+	if not(request.user.is_authenticated):
+		  return redirect('signpage')
+
+	discussion = Discussion.objects.all()[len(Discussion.objects.all())-20:
+					] if len(Discussion.objects.all()) > 21 else Discussion.objects.all()
+
+	discussion2 = []
+	
+
+	for i in range(len(discussion)-1 , -1 , -1):
+		discussion2.append(discussion[i])
+
+	
+
+
+
+	return render(request, 'front/disc.html' , {'discussions' : discussion2})
+
+
+
+
+
 
 
 

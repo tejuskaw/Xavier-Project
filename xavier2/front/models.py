@@ -1,7 +1,33 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+import random , string
 
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
+
+
+
+def get_code():
+	return ''.join(random.choice(string.ascii_letters+string.digits) for _ in range(8))
+
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='deleted')[0]
+
+class Discussion(models.Model):
+
+
+	title = models.CharField(max_length=30  , default='Please help me with this')
+	content = models.TextField()
+	time= models.DateTimeField(auto_now_add=True)
+	author = models.ForeignKey(User , on_delete =  models.SET(get_sentinel_user))
+	room = models.CharField(max_length=8, default=get_code)
+
+	def __str__(self):
+		return f'{self.author} : {self.content}'
+
+	
 
 
 
@@ -9,9 +35,13 @@ class Comment(models.Model):
 	content = models.TextField()
 	time= models.DateTimeField(auto_now_add=True)
 	author = models.ForeignKey(User , on_delete = models.CASCADE)
+	room = models.CharField(max_length=8, default='00000000')
 
 	def __str__(self):
 		return f'{self.author} : {self.content}'
+
+		
+
 
 
 

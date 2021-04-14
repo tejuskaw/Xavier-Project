@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href='{% static "front/material.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
-    <title>Announements</title>
+    <title>Discussions</title>
   </head>
   <body>
     <div class="page-wrapper chiller-theme toggled">
@@ -69,14 +69,14 @@
           <div class="sidebar-menu">
             <ul>
               <li>
-                <a href="{% url 'mainpage' %} " style="color: white"
-                  ><i class="fas fa-home" aria-hidden="true"></i>
+                <a href="{% url 'mainpage' %} " 
+                  ><i class="fa fa-home" aria-hidden="true"></i>
                   <span>Announcements</span>
                 </a>
               </li>
               <li>
-                <a href="{% url 'discusspage' %} ">
-                  <i class="fa  fa-comments"></i>
+                <a href="{% url 'discusspage' %} "  style="color: white" >
+                  <i class="fas  fa-comments"></i>
                   <span>Discussions</span>
                 </a>
               </li>
@@ -116,30 +116,36 @@
         <div class="container">
 
 
-          {% for announcement in announcements %}
+         {% for discussion in discussions %}
+
           <div class="ibox-content forum-container">
             <div class="forum-item active">
               <div class="row">
                 <div class="col-md-9">
                   <h5 class="forum-item-title">
-                    <a href="#" class="forum-item-title"  style="color: {{announcement.author.profile.color}}"
-                      >{{announcement.author}}</a
+                    <a href="#" class="forum-item-title"
+                      >{{discussion.title}}</a
                     >
-                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{announcement.time}}</small></span>
+                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{discussion.time}}</small></span>
                   </h5>
                   <hr />
                 </div>
                 <div class="forum-sub-title">
-                  {{announcement.content}}
+                  {{discussion.content |slice:":100"}} .......
+                </div>
+                <div class="col-md-1 forum-info"> -by
+                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
+                  <div>
+                   
+                  </div>
                 </div>
                 
               </div>
             </div>
           </div>
-          <br>
 
-          {% endfor %}
-
+            {% endfor %}
+       
         </div>
       </main>
     </div>
@@ -147,7 +153,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
-    <script >
+        <script >
       $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
     if (
