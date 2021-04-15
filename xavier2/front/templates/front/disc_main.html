@@ -16,7 +16,57 @@
     />
     <link rel="stylesheet" href='{% static "front/material.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
-    <title>Discussions</title>
+    <style>
+      body {
+        margin-top: 20px;
+        background: #eee;
+      }
+      @media (min-width: 0) {
+        .g-mr-15 {
+          margin-right: 1.07143rem !important;
+        }
+      }
+      @media (min-width: 0) {
+        .g-mt-3 {
+          margin-top: 0.21429rem !important;
+        }
+      }
+
+      .g-height-50 {
+        height: 50px;
+      }
+
+      .g-width-50 {
+        width: 50px !important;
+      }
+
+      @media (min-width: 0) {
+        .g-pa-30 {
+          padding: 2.14286rem !important;
+        }
+      }
+
+      .g-bg-secondary {
+        background-color: #fafafa !important;
+      }
+
+      .u-shadow-v18 {
+        box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+      }
+
+      .g-color-gray-dark-v4 {
+        color: #777 !important;
+      }
+
+      .g-font-size-12 {
+        font-size: 0.85714rem !important;
+      }
+
+      .media-comment {
+        margin-top: 20px;
+      }
+    </style>
+      <title>{{discussion.title}}</title>
   </head>
   <body>
     <div class="page-wrapper chiller-theme toggled">
@@ -114,38 +164,81 @@
       <!-- sidebar-wrapper  -->
       <main class="page-content">
         <div class="container">
+          <h1>{{discussion.title}}</h1> <h7 style="color: {{discussion.author.profile.color}}">{{discussion.author}}  </h7> <small> , {{discussion.time}}</small>
+          <p>
+            {{discussion.content}}
+          </p>
+          <hr />
+          <h5>Comments</h5>
+          <!-- comments random -->
+          <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous"
+          />
+          <div class="container">
+            <div class="row">
+             
+              {% for comment in comments %}
 
+              <div class="col-md-8">
+                <div class="media g-mb-30 media-comment">
+                  <img
+                    class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
+                    src="{{comment.author.profile.image.url}}"
+                    alt="Image Description"
+                  />
+                  <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                    <div class="g-mb-15">
+                      <h5 class="h5 g-color-gray-dark-v1 mb-0" style="color: {{comment.author.profile.color}}">{{comment.author}}</h5>
+                      <span class="g-color-gray-dark-v4 g-font-size-12"
+                        >{{comment.time}}</span
+                      >
+                    </div>
 
-         {% for discussion in discussions %}
+                    <p>
+                      {{comment.content}}
+                    </p>
 
-          <div class="ibox-content forum-container">
-            <div class="forum-item active">
-              <div class="row">
-                <div class="col-md-9">
-                  <h5 class="forum-item-title">
-                    <a href="main/?discuss={{discussion.room}}" class="forum-item-title"
-                      >{{discussion.title}}</a
-                    >
-                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{discussion.time}}</small></span>
-                  </h5>
-                  <hr />
-                </div>
-                <div class="forum-sub-title">
-                  {{discussion.content |slice:":100"}} .......
-                </div>
-                <div class="col-md-1 forum-info"> -by
-                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
-                  <div>
-                   
                   </div>
                 </div>
-                
+              </div>
+
+              {% endfor %}
+
+
+            </div>
+          </div>
+          <!-- end-->
+          <!--add comment section-->
+          <div style="margin-top: 35px">
+            <div style="display: flex; justify-content: center">
+              <div class="col-10">
+                <div class="comment-box ml-2">
+                  <h6>Add a comment</h6>
+                  <div class="comment-area">
+                    <textarea
+                      class="form-control"
+                      placeholder="what is your view?"
+                      rows="4"
+                    ></textarea>
+                  </div>
+                  <div class="comment-btns mt-2">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="pull-right">
+                          <button class="btn btn-success send btn-sm">
+                            Send <i class="fa fa-long-arrow-right ml-1"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-            {% endfor %}
-       
         </div>
       </main>
     </div>
@@ -153,7 +246,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
-        <script >
+       <script >
       $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
     if (

@@ -80,6 +80,31 @@ def discuss(request):
 	return render(request, 'front/disc.html' , {'discussions' : discussion2})
 
 
+def discuss_main(request) :
+	if not(request.user.is_authenticated):
+		  return redirect('signpage')
+
+
+	try:
+		discuss=request.GET['discuss']
+	except:
+		return HttpResponse('<h1>No such discussion</h1>')
+
+	discussion = Discussion.objects.filter(room=discuss)[0]
+	comments = Comment.objects.filter(room=discussion.room)
+	
+	comments2 = []
+	
+
+	for i in range(len(comments)-1 , -1 , -1):
+		comments2.append(comments[i])
+
+
+
+
+	return render(request, 'front/disc_main.html' , {'discussion' : discussion , 'comments' :comments2 })
+
+
 
 
 
