@@ -17,6 +17,7 @@
     <link rel="stylesheet" href='{% static "front/material.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
     <style>
+    	#id_room { display: none; }
       body {
         margin-top: 20px;
         background: #eee;
@@ -65,10 +66,12 @@
       .media-comment {
         margin-top: 20px;
       }
+
+      label { display: none; }
     </style>
       <title>{{discussion.title}}</title>
   </head>
-  <body>
+  <body  >
     <div class="page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
@@ -219,18 +222,30 @@
                   <h6>Add a comment</h6>
                   <div class="comment-area">
                     <textarea
+                    id = "text"
                       class="form-control"
                       placeholder="what is your view?"
                       rows="4"
+                      
+
                     ></textarea>
                   </div>
+                  <form method="post" style="display: none;">{% csrf_token %}
+                       {{send}}
+                    <button type="submit" name='action' value='sending' id="send" >Send</button>   
+                    
+            	</form>
                   <div class="comment-btns mt-2">
                     <div class="row">
                       <div class="col-6">
                         <div class="pull-right">
-                          <button class="btn btn-success send btn-sm">
-                            Send <i class="fa fa-long-arrow-right ml-1"></i>
-                          </button>
+                        	
+                        		
+	                          <button class="btn btn-success send btn-sm" type="submit" id="send2" onclick = 'comment(event)'>
+	                            Send <i class="fa fa-long-arrow-right ml-1"></i>
+	                          </button>
+	                        
+
                         </div>
                       </div>
                     </div>
@@ -275,6 +290,20 @@
   $("#show-sidebar").click(function() {
     $(".page-wrapper").addClass("toggled");
   });
+
+
+
+
+  function comment(e){
+  	console.log('hi')
+
+  	document.querySelector('#id_room').value = '{{discussion.room}}' ;
+  	document.querySelector('#id_content').value = document.querySelector('#text').value ;
+
+  	document.querySelector('#send').click()
+
+
+  }
   
   
     </script>

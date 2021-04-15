@@ -29,7 +29,7 @@ class UserCreationForm(UserCreationForm):
 class SendComment(forms.ModelForm):
 	class Meta :
 		model = Comment
-		fields = ['content']
+		fields = ['content' , 'room']
 
 
 
@@ -82,7 +82,21 @@ def discuss(request):
 
 def discuss_main(request) :
 	if not(request.user.is_authenticated):
-		  return redirect('signpage')
+		return redirect('signpage')
+
+
+
+	if request.method == 'POST':
+
+		send = SendComment(request.POST )
+		
+		if send.is_valid():
+			
+			Comment.objects.create(author=request.user ,
+			 						content=send.cleaned_data['content'] ,
+			 						room=send.cleaned_data['room'])
+			
+			print('commented ')
 
 
 	try:
@@ -100,9 +114,9 @@ def discuss_main(request) :
 		comments2.append(comments[i])
 
 
+	send = SendComment()
 
-
-	return render(request, 'front/disc_main.html' , {'discussion' : discussion , 'comments' :comments2 })
+	return render(request, 'front/disc_main.html' , {'discussion' : discussion , 'comments' :comments2 , 'send' : send })
 
 
 
