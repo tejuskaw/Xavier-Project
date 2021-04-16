@@ -6,5 +6,6 @@ urlpatterns=[path('',views.main ,  name='mainpage'),
 			path('logout/',views.logout_view ,  name='logout'),
 			path('discussions/',views.discuss ,  name='discusspage'),
 			path('discussions/main/',views.discuss_main ,  name='discussmainpage'),
+			path('add/',views.add ,  name='addpage'),
 			path('sign/',views.sign ,  name='signpage')
 ]

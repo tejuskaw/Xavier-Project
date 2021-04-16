@@ -14,9 +14,8 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     />
-    <link rel="stylesheet" href='{% static "front/material.css" %}' />
-    <link rel="stylesheet" href='{% static "front/study.css" %}' />
-    <title>Discussions</title>
+    <link rel="stylesheet" href='{% static "front/NewPost.css" %}' />
+    <title>Add new post</title>
   </head>
   <body>
     <div class="page-wrapper chiller-theme toggled">
@@ -75,7 +74,7 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'discusspage' %} "  style="color: white" >
+                <a href="{% url 'discusspage' %} "  >
                   <i class="fas  fa-comments"></i>
                   <span>Discussions</span>
                 </a>
@@ -94,8 +93,8 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'addpage' %} "
-                  ><i class="fa fa-plus" aria-hidden="true"></i>
+                <a href="{% url 'addpage' %} " style="color: white" 
+                  ><i class="fas fa-plus"  aria-hidden="true"></i>
                   <span>Add</span>
                 </a>
               </li>
@@ -114,46 +113,88 @@
       <!-- sidebar-wrapper  -->
       <main class="page-content">
         <div class="container">
-
-
-         {% for discussion in discussions %}
-
-          <div class="ibox-content forum-container">
-            <div class="forum-item active">
-              <div class="row">
-                <div class="col-md-9">
-                  <h5 class="forum-item-title">
-                    <a href="main/?discuss={{discussion.room}}" class="forum-item-title"
-                      >{{discussion.title}}</a
-                    >
-                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{discussion.time}}</small></span>
-                  </h5>
-                  <hr />
-                </div>
-                <div class="forum-sub-title">
-                  {{discussion.content |slice:":100"}} .......
-                </div>
-                <div class="col-md-1 forum-info"> -by
-                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
-                  <div>
-                   
-                  </div>
-                </div>
-                
+          <div class="newPost">
+            <h3>Add New Post</h3>
+            <input type="text" placeholder="Enter title here" id='title' value="Please help me with this" />
+            <div class="toolbar">
+              <button type="button" data-func="bold">
+                <i class="fa fa-bold"></i>
+              </button>
+              <button type="button" data-func="italic">
+                <i class="fa fa-italic"></i>
+              </button>
+              <button type="button" data-func="underline">
+                <i class="fa fa-underline"></i>
+              </button>
+              <button type="button" data-func="justifyleft">
+                <i class="fa fa-align-left"></i>
+              </button>
+              <button type="button" data-func="justifycenter">
+                <i class="fa fa-align-center"></i>
+              </button>
+              <button type="button" data-func="justifyright">
+                <i class="fa fa-align-right"></i>
+              </button>
+              <button type="button" data-func="insertunorderedlist">
+                <i class="fa fa-list-ul"></i>
+              </button>
+              <button type="button" data-func="insertorderedlist">
+                <i class="fa fa-list-ol"></i>
+              </button>
+              <div class="customSelect">
+                <select data-func="fontname">
+                  <optgroup label="Serif Fonts">
+                    <option value="Bree Serif">Bree Serif</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Palatino Linotype">Palatino Linotype</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                  </optgroup>
+                  <optgroup label="Sans Serif Fonts">
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="Asap" selected>Asap</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Lucida Sans Unicode">
+                      Lucida Sans Unicode
+                    </option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Verdana">Verdana</option>
+                  </optgroup>
+                  <optgroup label="Monospace Fonts">
+                    <option value="Courier New">Courier New</option>
+                    <option value="Lucida Console">Lucida Console</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="customSelect">
+                <select data-func="formatblock">
+                  <option value="h1">Heading 1</option>
+                  <option value="h2">Heading 2</option>
+                  <option value="h4">Subtitle</option>
+                  <option value="p" selected>Paragraph</option>
+                </select>
               </div>
             </div>
+            <div class="editor" contenteditable id="text"></div>
+            <div class="buttons">
+              <!--<button type="button">save draft</button>-->
+              <button id="button" onclick = 'add(event)' ></button>
+            </div>
+            <form method="post" style="display: none;">{% csrf_token %}
+                       {{send}}
+                    <button type="submit" name='action' value='sending' id="send" >Send</button> 
           </div>
-
-            {% endfor %}
-       
         </div>
       </main>
+      <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
-        <script >
+       <script >
       $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
     if (
@@ -183,6 +224,23 @@
     $(".page-wrapper").addClass("toggled");
   });
   
+
+
+
+  function add(e){
+    console.log('hi')
+
+  
+    document.querySelector('#id_content').value = document.querySelector('#text').innerText ;
+    document.querySelector('#id_title').value = document.querySelector('#title').value ;
+
+    document.querySelector('#send').click()
+
+
+  }
+
+
+
   
     </script>
   </body>

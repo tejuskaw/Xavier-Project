@@ -31,6 +31,11 @@ class SendComment(forms.ModelForm):
 		model = Comment
 		fields = ['content' , 'room']
 
+class NewDiscussion(forms.ModelForm):
+	class Meta :
+		model = Discussion
+		fields = ['content' ,'title']
+
 
 
 
@@ -78,6 +83,48 @@ def discuss(request):
 
 
 	return render(request, 'front/disc.html' , {'discussions' : discussion2})
+
+
+
+
+
+def add(request) :
+	if not(request.user.is_authenticated):
+		return redirect('signpage')
+
+
+	if request.method == 'POST':
+
+		send = NewDiscussion(request.POST )
+		
+		if send.is_valid():
+			
+			Discussion.objects.create(author=request.user ,
+			 						content=send.cleaned_data['content'] ,
+			 						title=send.cleaned_data['title'])
+			
+			print('added discussion')
+
+	send = NewDiscussion(request.POST )
+
+
+
+
+	return render(request , 'front/add.html' , {'send' : send})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def discuss_main(request) :
