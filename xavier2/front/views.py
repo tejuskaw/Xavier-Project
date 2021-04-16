@@ -36,6 +36,11 @@ class NewDiscussion(forms.ModelForm):
 		model = Discussion
 		fields = ['content' ,'title']
 
+class NewAnnouncement(forms.ModelForm):
+	class Meta :
+		model = Announcement
+		fields = ['content' ,'title']
+
 
 
 
@@ -98,19 +103,27 @@ def add(request) :
 		send = NewDiscussion(request.POST )
 		
 		if send.is_valid():
+			if request.POST['action']=='announce':
+				if request.user.is_staff :
+					Announcement.objects.create(
+				 						content=send.cleaned_data['content'] ,
+				 						title=send.cleaned_data['title'])
+				print('Announcement')
+				
+			if request.POST['action']=='discuss':
+				print('Discussion')
 			
-			Discussion.objects.create(author=request.user ,
-			 						content=send.cleaned_data['content'] ,
-			 						title=send.cleaned_data['title'])
+				Discussion.objects.create(author=request.user ,
+				 						content=send.cleaned_data['content'] ,
+				 						title=send.cleaned_data['title'])
 			
-			print('added discussion')
-
-	send = NewDiscussion(request.POST )
+	send = NewDiscussion()
 
 
 
 
-	return render(request , 'front/add.html' , {'send' : send})
+
+	return render(request , 'front/add.html' , {'send' : send })
 
 
 

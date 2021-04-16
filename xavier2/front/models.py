@@ -25,7 +25,7 @@ class Discussion(models.Model):
 	room = models.CharField(max_length=8, default=get_code)
 
 	def __str__(self):
-		return f'{self.author} : {self.content}'
+		return f'{self.title} : {self.content}'
 
 	
 
@@ -71,9 +71,9 @@ class Profile(models.Model):
 
 
 class Announcement(models.Model):
+	title = models.CharField(max_length=30  , default='New announcement')
 	content = models.TextField()
 	time= models.DateTimeField(auto_now_add=True)
-	author = models.ForeignKey(User , on_delete = models.CASCADE)
 
 	def __str__(self):
-		return f'{self.author} : {self.content}'
+		return f'{self.title} : {self.content}'

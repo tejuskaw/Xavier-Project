@@ -169,11 +169,12 @@
                 </select>
               </div>
               <div class="customSelect">
-                <select data-func="formatblock">
-                  <option value="h1">Heading 1</option>
-                  <option value="h2">Heading 2</option>
-                  <option value="h4">Subtitle</option>
-                  <option value="p" selected>Paragraph</option>
+                <select id='type' data-func="formatblock" onchange ="change(event)">
+                  <option value="discuss" >Discussion</option>
+                  {% if request.user.is_staff %}
+                  <option value="announce" >Announcement</option>
+                  {% endif %} 
+                  <option value="study">Study material</option>
                 </select>
               </div>
             </div>
@@ -184,7 +185,8 @@
             </div>
             <form method="post" style="display: none;">{% csrf_token %}
                        {{send}}
-                    <button type="submit" name='action' value='sending' id="send" >Send</button> 
+                    <button type="submit" name='action' value='discuss' id="send" >Send</button> 
+                  </form>
           </div>
         </div>
       </main>
@@ -233,12 +235,21 @@
   
     document.querySelector('#id_content').value = document.querySelector('#text').innerText ;
     document.querySelector('#id_title').value = document.querySelector('#title').value ;
+    document.querySelector('#send').value=document.querySelector('#type').value
 
     document.querySelector('#send').click()
 
 
   }
 
+  function change(e){
+    if (document.querySelector('#type').value=='discuss'){
+    document.querySelector('#title').value='Please help me with this'
+  }
+  if (document.querySelector('#type').value=='announce'){
+    document.querySelector('#title').value='New Announcement' } 
+  }
+ 
 
 
   
