@@ -43,13 +43,15 @@ class Comment(models.Model):
 		
 
 class Material(models.Model):
-    name = models.CharField(max_length=30  , default='New material')
-    file = models.FileField(upload_to = 'materials')
-    thumb = models.ImageField(default='default.jpg')
-    tag = models.CharField(max_length=7, default=None)
+	name = models.CharField(max_length=30  , default='New material')
+	file = models.FileField(upload_to = 'materials')
+	thumb = models.ImageField(default='ext_pics/default.png')
+	tag = models.CharField(max_length=7, default=None)
 
-    def __str__(self):
-        return f'{self.name} : {self.tag}'
+	def __str__(self):
+		return f'{self.name} : {self.tag}'
+
+	
 
 
 

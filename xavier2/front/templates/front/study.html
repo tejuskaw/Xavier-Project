@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href='{% static "front/material.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
-    <title>Discussions</title>
+    <title>Study Material</title>
   </head>
   <body>
     <div class="page-wrapper chiller-theme toggled">
@@ -75,14 +75,14 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'discusspage' %} "  style="color: white" >
+                <a href="{% url 'discusspage' %} "   >
                   <i class="fas  fa-comments"></i>
                   <span>Discussions</span>
                 </a>
               </li>
 
               <li>
-                <a href="{% url 'studypage' %}"
+                <a href="{% url 'studypage' %}" style="color: white"
                   ><i class="fa  fa-book"></i>
                   <span>Study Material</span>
                 </a>
@@ -109,51 +109,35 @@
             >
           </div>
         </div>
-        <!-- sidebar-content  -->
-      </nav>
       <!-- sidebar-wrapper  -->
+    </nav>
       <main class="page-content">
         <div class="container">
-
-
-         {% for discussion in discussions %}
-
-          <div class="ibox-content forum-container">
-            <div class="forum-item active">
-              <div class="row">
-                <div class="col-md-9">
-                  <h5 class="forum-item-title">
-                    <a href="main/?discuss={{discussion.room}}" class="forum-item-title"
-                      >{{discussion.title}}</a
-                    >
-                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{discussion.time}}</small></span>
-                  </h5>
-                  <hr />
-                </div>
-                <div class="forum-sub-title">
-                  {{discussion.content |slice:":100"}} .......
-                </div>
-                <div class="col-md-1 forum-info"> -by
-                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
-                  <div>
-                   
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
+          <div class="archive">
+            {% for st in study %} <a href="{{st.file.url}}" target="_blank" >
+            <div class="product_card article">
+              <img
+                src="{{st.thumb.url}}"
+                class="product_image"
+                alt="PRODUCT"
+              />
+              <section>
+                <h1 class="title">{{st.name}}</h1>
+                <p class="price">{{st.tag}}</p>
+              </section>
+            </div></a>
             {% endfor %}
-       
+            
+          </div>
         </div>
       </main>
+      <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
-        <script >
+      <script >
       $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
     if (

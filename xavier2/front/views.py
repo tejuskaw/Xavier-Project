@@ -94,7 +94,21 @@ def discuss(request):
 
 	return render(request, 'front/disc.html' , {'discussions' : discussion2})
 
+def study(request) :
+	if not(request.user.is_authenticated):
+		return redirect('signpage')
 
+	study = Material.objects.all()
+
+	study2 = []
+	
+
+	for i in range(len(study)-1 , -1 , -1):
+		study2.append(study[i])
+
+
+
+	return render(request , 'front/study.html' ,  { 'study' : study2 })
 
 
 
