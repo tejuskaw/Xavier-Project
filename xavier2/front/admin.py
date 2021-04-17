@@ -6,4 +6,3 @@ admin.site.register(Profile)
 admin.site.register(Announcement)
 admin.site.register(Discussion)
 admin.site.register(Material)
-

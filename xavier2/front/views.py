@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Comment , Announcement , Profile , Discussion
+from .models import Comment , Announcement , Profile , Discussion , Material
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -40,6 +40,11 @@ class NewAnnouncement(forms.ModelForm):
 	class Meta :
 		model = Announcement
 		fields = ['content' ,'title']
+
+class NewMaterial(forms.ModelForm):
+	class Meta :
+		model = Material
+		fields = ['name' ,'file' ,'tag']
 
 
 
@@ -100,30 +105,43 @@ def add(request) :
 
 	if request.method == 'POST':
 
-		send = NewDiscussion(request.POST )
 		
-		if send.is_valid():
-			if request.POST['action']=='announce':
+		
+		if request.POST['action']=='announce':
+			send = NewAnnouncement(request.POST)
+			if send.is_valid() :
+				
 				if request.user.is_staff :
 					Announcement.objects.create(
 				 						content=send.cleaned_data['content'] ,
 				 						title=send.cleaned_data['title'])
 				print('Announcement')
 				
-			if request.POST['action']=='discuss':
-				print('Discussion')
+		if request.POST['action']=='discuss':
+			send = NewDiscussion(request.POST)
+			if send.is_valid() :
+				print(request.POST)
+				
 			
 				Discussion.objects.create(author=request.user ,
 				 						content=send.cleaned_data['content'] ,
 				 						title=send.cleaned_data['title'])
+
+		if request.POST['action']=='study':
+			form = NewMaterial(request.POST , request.FILES)
+			if form.is_valid() :
+				form.save()
+
+
 			
 	send = NewDiscussion()
+	send2= NewMaterial()
 
 
 
 
 
-	return render(request , 'front/add.html' , {'send' : send })
+	return render(request , 'front/add.html' , {'send' : send , 'send2' : send2 })
 
 
 

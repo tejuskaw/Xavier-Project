@@ -43,10 +43,14 @@ class Comment(models.Model):
 		
 
 class Material(models.Model):
-        name = models.CharField(max_length=30  , default='New material')
-        topic = models.TextField()
-        file = models.FileField(upload_to = 'materials')
-        tag = models.CharField(max_length=7, default=None)
+    name = models.CharField(max_length=30  , default='New material')
+    file = models.FileField(upload_to = 'materials')
+    tag = models.CharField(max_length=7, default=None)
+
+    def __str__(self):
+        return f'{self.name} : {self.tag}'
+
+
 
 
 
