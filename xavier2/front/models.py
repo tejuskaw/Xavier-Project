@@ -45,6 +45,7 @@ class Comment(models.Model):
 class Material(models.Model):
     name = models.CharField(max_length=30  , default='New material')
     file = models.FileField(upload_to = 'materials')
+    thumb = models.ImageField(default='default.jpg')
     tag = models.CharField(max_length=7, default=None)
 
     def __str__(self):
