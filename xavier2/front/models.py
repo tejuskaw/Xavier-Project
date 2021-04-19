@@ -51,19 +51,19 @@ class Material(models.Model):
 	def __str__(self):
 		return f'{self.name} : {self.tag}'
 
-
-
+	
 
 class question(models.Model):
 	ques = models.TextField()
-	a1 = models.CharField(max_length=1 )
-	a2 = models.CharField(max_length=1 )
-	a3 = models.CharField(max_length=1 )
-	a4 = models.CharField(max_length=1 )
+	a1 = models.CharField(max_length=50 )
+	a2 = models.CharField(max_length=50 )
+	a3 = models.CharField(max_length=50 )
+	a4 = models.CharField(max_length=50 )
 	correct = models.CharField(max_length=1 )
+
+	def __str__(self):
+		return f'{self.ques[:20]}....... '
 	
-
-
 
 
 

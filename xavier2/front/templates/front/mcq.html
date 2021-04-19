@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Quiz</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "front/main2.css" %}'>
+    <style type="text/css">
+        body {
+        font-family: "Ubuntu", sans-serif;
+        background: rgb(77, 36, 143);
+      }
+    </style>
+    
+</head>
+<body>
+
+
+    <div class="quiz">
+        <form method="post">{% csrf_token %} 
+
+            <div class="on viewed" id="1">
+                <div class="question">1.  {{ques.0}}  </div>
+                <div class="answer">
+                    <ul >
+                        <li class="option a">{{ ques.0.a1 }} </li>
+                        <li class="option b">{{ ques.0.a2 }} </li>
+                        <li class="option c">{{ ques.0.a3}} </li>
+                        <li class="option d">{{ ques.0.a4}} </li>
+                    </ul>
+             
+                    <input type="hidden" value="{{ques.0.id}}:" name="a1">
+                </div>
+            </div>
+            <div class="off" id="2">
+                <div class="question">2.  {{ques.1}} </div>
+                <div class="answer">
+                    <ul >
+                        <li class="option a">{{ ques.1.a1  }}</li>
+                        <li class="option b">{{ ques.1.a2 }} </li>
+                        <li class="option c">{{ ques.1.a3}} </li>
+                        <li class="option d">{{ ques.1.a4}} </li>
+                    </ul>
+           
+                    <input type="hidden" value="{{ques.1.id}}:" name="a2">
+                </div>
+            </div>
+            <div class="off" id="3">
+                <div class="question">3.  {{ques.2}}</div>
+                <div class="answer">
+                    <ul >
+                        <li class="option a">{{ ques.2.a1 }}</li>
+                        <li class="option b">{{ ques.2.a2 }} </li>
+                        <li class="option c">{{ ques.2.a3}} </li>
+                        <li class="option d">{{ ques.2.a4}} </li>
+                    </ul>
+                
+                    <input type="hidden" value="{{ques.2.id}}:" name="a3">
+                </div>
+            </div>
+            <div class="off" id="4">
+                <div class="question">4.  {{ques.3}} </div>
+                <div class="answer">
+                    <ul >
+                        <li class="option a">{{ ques.3.a1 }}</li>
+                        <li class="option b">{{ ques.3.a2 }} </li>
+                        <li class="option c">{{ ques.3.a3 }} </li>
+                        <li class="option d">{{ ques.3.a4 }} </li>
+                    </ul>
+                 
+                    <input type="hidden" value="{{ques.3.id}}:" name="a4">
+                </div>
+            </div>
+            <div class="off" id="5">
+                <div class="question">5.  {{ques.4}}</div>
+                <div class="answer">
+                    <ul >
+                        <li class="option a">{{ ques.4.a1 }}</li>
+                        <li class="option b">{{ ques.4.a2 }} </li>
+                        <li class="option c">{{ ques.4.a3}} </li>
+                        <li class="option d">{{ ques.4.a4}} </li>
+                    </ul>
+                 
+                    <input type="hidden" value="{{ques.4.id}}:" name="a5">
+                </div>
+            </div>
+        
+
+
+
+
+            <button type="submit" id="submit" name='action' value='submit' >Submit</button>
+        </form>
+    </div>
+
+
+
+
+    <div class="move">
+        <ul>
+            <li class="prev" id="prev">Previous</li>
+            <li class="next" id="next">Next</li>
+        </ul>
+    </div>
+    
+    <div class="info">
+        <ul>
+            <li id="view">Questions Viewed : 1</li>
+            <li id='answered' >Answered : 0</li>
+            <li id='to_be_answered'>To be answered : 10</li>
+        </ul>
+    </div>
+
+
+
+   
+
+
+
+
+    <script >
+        let viewed = document.getElementsByClassName('viewed');
+
+
+function change(on , next , prev) {
+    document.getElementById('view').innerHTML='Questions Viewed : '+viewed.length
+    
+  
+
+
+    
+}
+
+
+let next =  document.getElementById('next');
+next.addEventListener('click',function(event){
+    let on = document.getElementsByClassName('on')[0] ;
+    if(parseInt(on.id)< 5){
+    on.className = 'off viewed' ;
+    document.getElementById(String(parseInt(on.id) + 1)).className = 'on viewed' ;
+    
+
+    change(on , next , prev) }
+
+}) ;
+
+
+
+let prev = document.getElementById('prev');
+prev.addEventListener('click',function(event){
+    let on = document.getElementsByClassName('on')[0] ;
+    if(parseInt(on.id) > 1){
+    on.className = 'off viewed' ;
+    document.getElementById(String(parseInt(on.id) - 1)).className = 'on viewed' ;
+
+
+    change(on , next , prev) }
+
+}) ;
+
+
+
+
+
+let err=0 ;
+err = document.getElementsByClassName('errorlist nonfield');
+if(err.length !== 0) {
+    alert(err[0].innerText);
+  }
+
+
+
+
+  document.querySelectorAll('.option').forEach(item => {
+    item.addEventListener('click', event => {
+
+
+      item.parentElement.childNodes[1].className = 'option a'
+      item.parentElement.childNodes[3].className = 'option b'
+      item.parentElement.childNodes[5].className = 'option c'
+      item.parentElement.childNodes[7].className = 'option d'
+
+
+
+      if(item.classList.length < 3 ) {
+      item.className = item.className + ' chosen' }
+      item.parentElement.parentElement.childNodes[3].value +=  item.classList[1] 
+
+      let ch = document.getElementsByClassName('chosen')
+      console.log(ch)
+    if( ch.length > 0) {
+    
+      document.getElementById('answered').innerHTML='Answered : '+ ch.length
+      document.getElementById('to_be_answered').innerHTML='To be answered : '+(5-ch.length)
+     }
+
+
+
+    })
+  })
+
+
+</script>
+</body>
+</html>

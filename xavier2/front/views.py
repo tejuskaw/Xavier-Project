@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Comment , Announcement , Profile , Discussion , Material
+from .models import Comment , Announcement , Profile , Discussion , Material , question
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import  AuthenticationForm , UserCreationForm
+import random
 
 
 
@@ -93,6 +94,73 @@ def discuss(request):
 
 
 	return render(request, 'front/disc.html' , {'discussions' : discussion2})
+
+
+def evaluate(ids , ans) :
+	score = 0
+	for i in range(len(ids)) :
+		q= question.objects.filter(id=ids[i])[0]
+		if q.correct == ans[i] :
+			score+=1
+	return score
+
+
+
+
+def quiz(request ):
+	if not(request.user.is_authenticated):
+		return redirect('signpage')
+
+	if request.method == 'POST':
+
+		if request.POST['action']=='start':
+			ques = question.objects.all()
+			ques2=[]
+			while len(ques2)<5:
+				q= random.choice(ques)
+				if q not in ques2 :
+					ques2.append(q)
+
+			return render(request , 'front/mcq.html' , {'ques' : ques2})
+
+		if request.POST['action']=='submit':
+			ids=[]
+			ans=[]
+			
+			for i in range(5):
+				ids.append(request.POST.get(f'a{i+1}').split(':')[0]) 
+				try :
+					ans.append(request.POST.get(f'a{i+1}').split(':')[-1][-1]) 
+				except :
+					ans.append('x')
+
+
+
+						
+
+			score = evaluate(ids , ans)
+			return render(request , 'front/quizend.html' , {'score' : score})
+
+
+
+
+				
+			
+
+
+
+
+
+	return render(request , 'front/quizstart.html')
+
+
+
+
+
+
+
+
+
 
 def study(request) :
 	if not(request.user.is_authenticated):

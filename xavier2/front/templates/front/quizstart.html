@@ -14,9 +14,9 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     />
-    <link rel="stylesheet" href='{% static "front/material.css" %}' />
+    <link rel="stylesheet" href='{% static "front/quizstart.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
-    <title>Discussions</title>
+    <title>Quiz</title>
   </head>
   <body>
     <div class="page-wrapper chiller-theme toggled">
@@ -75,20 +75,20 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'discusspage' %} "  style="color: white" >
+                <a href="{% url 'discusspage' %} "   >
                   <i class="fas  fa-comments"></i>
                   <span>Discussions</span>
                 </a>
               </li>
 
               <li>
-                <a href="{% url 'studypage' %}"
+                <a href="{% url 'studypage' %}" 
                   ><i class="fa  fa-book"></i>
                   <span>Study Material</span>
                 </a>
               </li>
               <li>
-                <a href="{% url 'quizpage' %} "
+                <a href="{% url 'quizpage' %}"  style="color: white"
                 ><i class="fa fa-calendar"></i>
                   <span>Quiz</span>
                 </a>
@@ -109,51 +109,60 @@
             >
           </div>
         </div>
-        <!-- sidebar-content  -->
       </nav>
       <!-- sidebar-wrapper  -->
       <main class="page-content">
         <div class="container">
-
-
-         {% for discussion in discussions %}
-
-          <div class="ibox-content forum-container">
-            <div class="forum-item active">
-              <div class="row">
-                <div class="col-md-9">
-                  <h5 class="forum-item-title">
-                    <a href="main/?discuss={{discussion.room}}" class="forum-item-title"
-                      >{{discussion.title}}</a
-                    >
-                    <span class="col-md-3" style="font-size: .75rem ;" > <small> {{discussion.time}}</small></span>
-                  </h5>
-                  <hr />
+          <div class="outside">
+            <div class="info_box">
+              <div
+                class="info_title"
+                style="background-color: rgb(55, 212, 233)"
+              >
+                <span>Some Rules of this quiz</span>
+              </div>
+              <div
+                class="info_list"
+                style="
+                  background-color: rgb(150, 241, 163);
+                  border-top: 2px solid black;
+                  border-bottom: 2px solid black;
+                "
+              >
+                <div class="info">
+                  1.You will have only 10 minutes for the quiz
                 </div>
-                <div class="forum-sub-title">
-                  {{discussion.content |slice:":100"}} .......
+                <div class="info">
+                  2.Once you select any answer,you can't reselect
                 </div>
-                <div class="col-md-1 forum-info"> -by
-                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
-                  <div>
-                   
-                  </div>
+                <div class="info">
+                  3.You can't select any option after time goes off
                 </div>
-                
+                <div class="info">
+                4.You will get 15 questions in total
+              </div>
+              <div class="info">
+                5.Do not reload the page
+              </div>
+              </div>
+              <div class="buttons" style="background-color: rgb(55, 212, 233)">
+                <form method="post">{% csrf_token %}
+                  
+                <button class="quit"><a href="{% url 'mainpage' %} " >Exit Quiz</a> </button>
+                <button class="restart" name='action' value='start' type="submit">Continue</button>
+                </form>
               </div>
             </div>
           </div>
-
-            {% endfor %}
-       
         </div>
       </main>
+      <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
-        <script >
+     <script >
       $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
     if (
