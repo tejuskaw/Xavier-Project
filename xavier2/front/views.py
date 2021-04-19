@@ -311,8 +311,7 @@ def sign(request):
         	        code='nouser',)
         	        return render(request, 'front/sign.html', {'form1' : form1 , 'form2' : form2 })
         	else:
-        	    # If there were errors, we render the form with these
-        	    # errors
+        	    
         	    return render(request, 'front/sign.html', {'form1' : form1 , 'form2' : form2 }) 
 
 
@@ -329,38 +328,6 @@ def sign(request):
 
 
   
-
-
-
-
-
-
-def chat(request):
-
-	if not(request.user.is_authenticated):
-		  return redirect('signpage')
-
-
-
-	if request.method == 'POST':
-
-			send = SendComment(request.POST )
-			if send.is_valid():
-				Comment.objects.create(author=request.user , content=send.cleaned_data['content'])
-				return redirect('chatpage')
-
-
-
-	comments = Comment.objects.all()
-
-
-
-
-
-
-	send = SendComment()
-	return render(request, 'front/chat.html', {'comments': comments   , 'send' : send})
-
 
     
 
