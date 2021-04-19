@@ -72,7 +72,6 @@ class question(models.Model):
 class Profile(models.Model):
 	user= models.OneToOneField(User , on_delete = models.CASCADE )
 	image = models.ImageField(default='default.jpg' , upload_to = 'profile_pics')
-	bg = models.ImageField(default= 'default.jpg'  , upload_to = 'bg_pics')
 	color = models.CharField(max_length=7, default='#000000')
 
 
