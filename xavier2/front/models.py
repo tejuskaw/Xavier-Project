@@ -60,9 +60,13 @@ class question(models.Model):
 	a3 = models.CharField(max_length=50 )
 	a4 = models.CharField(max_length=50 )
 	correct = models.CharField(max_length=1 )
+	course = models.CharField(max_length=9,
+                choices = (('cn' , 'Computer Networks'),('os' , 'Operating System'),
+                          ('dbms' , 'Database Management'),('ml' , 'Machine Learning')),
+                default = 'cn' )
 
 	def __str__(self):
-		return f'{self.ques[:20]}....... '
+		return f'{self.course} : {self.ques[:20]}....... '
 	
 
 
