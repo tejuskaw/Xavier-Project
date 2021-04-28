@@ -16,6 +16,51 @@
     />
     <link rel="stylesheet" href='{% static "front/material.css" %}' />
     <link rel="stylesheet" href='{% static "front/study.css" %}' />
+    <style type="text/css">
+    	
+    	@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+ 
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 50%;
+  position: relative;
+  
+}
+
+.searchTerm {
+  width: 50%;
+  border: 3px solid #525965;
+  border-right: none;
+  padding: 1rem;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #525965;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #525965;
+  background: #525965;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+    </style>
     <title>Study Material</title>
   </head>
   <body>
@@ -113,7 +158,29 @@
     </nav>
       <main class="page-content">
         <div class="container">
+
+
+			<div class="wrap">
+			   <div class="search">
+			   	<form method="get" >
+				      <input id='tag' type="text" class="searchTerm" placeholder="What tag are you looking for?">
+				      <button id="get" type="submit" class="searchButton" name="tag" value="" onclick="document.querySelector('#get').value = document.querySelector('#tag').value">
+				        <i class="fa fa-search"></i>
+				     </button>
+			     </form>
+			   </div>
+			</div>
+
+
+
+
+
+
           <div class="archive"> 
+
+          	{% if not empty %}
+
+
             {% for st in study %} <a href="{{st.file.url}}" target="_blank" >
             <div class="product_card article">
 
@@ -168,6 +235,14 @@
               </section>
             </div></a>
             {% endfor %}
+
+
+            {% else %}
+
+            <div><h3>No materials with such tag</h3></div>
+
+            {% endif %}
+
             
           </div>
         </div>

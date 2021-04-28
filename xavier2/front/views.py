@@ -166,7 +166,19 @@ def study(request) :
 	if not(request.user.is_authenticated):
 		return redirect('signpage')
 
-	study = Material.objects.all()
+
+
+
+	try:
+		tag=request.GET['tag']
+	except:
+		tag = None
+
+	if tag == None :
+		study = Material.objects.all()
+	else :
+		study = Material.objects.filter(tag=tag)
+	
 
 	study2 = []
 	
@@ -174,9 +186,13 @@ def study(request) :
 	for i in range(len(study)-1 , -1 , -1):
 		study2.append(study[i])
 
+	
+	empty = True if len(study2)==0 else False
 
 
-	return render(request , 'front/study.html' ,  { 'study' : study2 })
+
+
+	return render(request , 'front/study.html' ,  { 'study' : study2 , 'empty' :empty })
 
 
 
