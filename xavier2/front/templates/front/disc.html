@@ -122,7 +122,7 @@
             <div class="forum-item active">
               <div class="row">
                 <div class="col-md-9">
-                  <h5 class="forum-item-title">
+                  <h5 class="forum-item-title" >
                     <a href="main/?discuss={{discussion.room}}" class="forum-item-title"
                       >{{discussion.title}}</a
                     >
@@ -130,19 +130,15 @@
                   </h5>
                   <hr />
                 </div>
-                <div class="forum-sub-title">
+                <br>
+                <div class="forum-sub-title" >
                   {{discussion.content |slice:":100"}} .......
                 </div>
-                <div class="col-md-1 forum-info"> -by
-                  <span class="views-number" style="color: {{discussion.author.profile.color}}" >  {{discussion.author}} </span>
-                  <div>
-                   
-                  </div>
-                </div>
+                
                 
               </div>
             </div>
-          </div>
+          </div> <br>
 
             {% endfor %}
        

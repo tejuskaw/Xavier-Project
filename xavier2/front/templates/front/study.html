@@ -113,14 +113,55 @@
     </nav>
       <main class="page-content">
         <div class="container">
-          <div class="archive">
+          <div class="archive"> 
             {% for st in study %} <a href="{{st.file.url}}" target="_blank" >
             <div class="product_card article">
-              <img
-                src="{{st.thumb.url}}"
+
+            	{% if st.file.url|slice:"-3:" == 'pdf' %}
+              <img 
+                src='{% static "front/pdf.png" %}'
                 class="product_image"
                 alt="PRODUCT"
               />
+                {% elif st.file.url|slice:"-3:" == 'tml' %}
+              <img 
+                src='{% static "front/html.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              /> 
+              {% elif st.file.url|slice:"-3:" == 'css' %}
+              <img 
+                src='{% static "front/css.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              /> 
+              {% elif st.file.url|slice:"-2:" == 'js' %}
+              <img 
+                src='{% static "front/js.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              /> 
+              {% elif st.file.url|slice:"-3:" == 'png' or st.file.url|slice:"-3:" == 'jpg' or st.file.url|slice:"-3:" == 'peg' %}
+              <img 
+                src='{% static "front/image.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              /> 
+              {% elif st.file.url|slice:"-1:" == 'c' or st.file.url|slice:"-2:" == 'py' or st.file.url|slice:"-3:" == 'cpp' or st.file.url|slice:"-4:" == 'java' %}
+              <img 
+                src='{% static "front/code.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              /> 
+                 
+                  {% else %}
+              <img 
+                src='{% static "front/default.png" %}'
+                class="product_image"
+                alt="PRODUCT"
+              />
+                  {% endif %}
+              
               <section>
                 <h1 class="title">{{st.name}}</h1>
                 <p class="price">{{st.tag}}</p>
