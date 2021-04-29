@@ -22,7 +22,7 @@
         <form method="post">{% csrf_token %} 
 
             <div class="on viewed" id="1">
-                <div class="question">1.  {{ques.0}}  </div>
+                <div class="question">1.  {{ques.0.ques}}  </div>
                 <div class="answer">
                     <ul >
                         <li class="option a">{{ ques.0.a1 }} </li>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="off" id="2">
-                <div class="question">2.  {{ques.1}} </div>
+                <div class="question">2.  {{ques.1.ques}} </div>
                 <div class="answer">
                     <ul >
                         <li class="option a">{{ ques.1.a1  }}</li>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="off" id="3">
-                <div class="question">3.  {{ques.2}}</div>
+                <div class="question">3.  {{ques.2.ques}}</div>
                 <div class="answer">
                     <ul >
                         <li class="option a">{{ ques.2.a1 }}</li>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="off" id="4">
-                <div class="question">4.  {{ques.3}} </div>
+                <div class="question">4.  {{ques.3.ques}} </div>
                 <div class="answer">
                     <ul >
                         <li class="option a">{{ ques.3.a1 }}</li>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="off" id="5">
-                <div class="question">5.  {{ques.4}}</div>
+                <div class="question">5.  {{ques.4.ques}}</div>
                 <div class="answer">
                     <ul >
                         <li class="option a">{{ ques.4.a1 }}</li>
@@ -109,7 +109,7 @@
         <ul>
             <li id="view">Questions Viewed : 1</li>
             <li id='answered' >Answered : 0</li>
-            <li id='to_be_answered'>To be answered : 10</li>
+            <li id='to_be_answered'>To be answered : 5</li>
         </ul>
     </div>
 
@@ -126,7 +126,8 @@
 
 function change(on , next , prev) {
     document.getElementById('view').innerHTML='Questions Viewed : '+viewed.length
-    
+
+ 
   
 
 
@@ -143,6 +144,7 @@ next.addEventListener('click',function(event){
     
 
     change(on , next , prev) }
+
 
 }) ;
 

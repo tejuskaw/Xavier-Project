@@ -117,22 +117,22 @@
 
 
 
-            <!-- Quiz Topic Part -->
+          	<!-- Quiz Topic Part -->
             <div class="container_form">
                 <form class="form1">
-                  <label onclick="document.querySelector('#course').value = 'ml' ">
+                  <label>
                     <input type="radio" name="radio" checked/>
                     <span>Machine Learning</span>
                   </label>
-                  <label onclick="document.querySelector('#course').value = 'cn' ">
+                  <label>
                     <input type="radio" name="radio"/>
                     <span>Computer Networks</span>
                   </label>
-                  <label onclick="document.querySelector('#course').value = 'os' ">
+                  <label>
                     <input type="radio" name="radio"/>
                     <span>Operating Systems</span>
                   </label>
-                  <label onclick="document.querySelector('#course').value = 'dbms' ">
+                  <label>
                     <input type="radio" name="radio"/>
                     <span>DBMS</span>
                   </label>
@@ -146,16 +146,14 @@
             <div class="info_box">
               <div
                 class="info_title"
-                style="background-color: #032e52; color: white;
-                text-align: center;
-                "
+                style="background-color: rgb(55, 212, 233)"
               >
                 <span>Some Rules of this quiz</span>
               </div>
               <div
                 class="info_list"
                 style="
-                  background-color: rgb(255, 255, 255);
+                  background-color: rgb(150, 241, 163);
                   border-top: 2px solid black;
                   border-bottom: 2px solid black;
                 "
@@ -174,9 +172,8 @@
                 4.Do not reload the page
               </div>
               </div>
-              <div class="buttons" >
+              <div class="buttons" style="background-color: rgb(55, 212, 233)">
                 <form method="post">{% csrf_token %}
-                  <input type="hidden" id='course' value="ml" name="course">
                   
                 <button class="quit"><a href="{% url 'mainpage' %} " >Exit Quiz</a> </button>
                 <button class="restart" name='action' value='start' type="submit">Continue</button>

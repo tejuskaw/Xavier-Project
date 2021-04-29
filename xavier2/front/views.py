@@ -114,7 +114,20 @@ def quiz(request ):
 	if request.method == 'POST':
 
 		if request.POST['action']=='start':
-			ques = question.objects.all()
+
+
+			try:
+				course=request.POST['course']
+			except:
+				course = None
+
+			if course == None :
+				ques = question.objects.all()
+			else :
+				ques = question.objects.filter(course=course)
+
+
+
 			ques2=[]
 			while len(ques2)<5:
 				q= random.choice(ques)
