@@ -5,13 +5,18 @@
   font-size: 1em;
   display: block;
 }
-.row {
+.forum-item .row {
   display: flex;
   flex-direction: column;
   border: 2px solid rgba(0, 0, 0, 0.171);
   border-radius: 5px;
   box-shadow: 5px 8px 2px #888888;
   padding: 15px;
+}
+.forum-item .row:hover{
+  transform: scale(1.01);
+  cursor: pointer;
+
 }
 .product_card {
   width: 250px;
