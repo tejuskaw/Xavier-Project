@@ -96,14 +96,6 @@ def discuss(request):
 	return render(request, 'front/disc.html' , {'discussions' : discussion2})
 
 
-def evaluate(ids , ans) :
-	score = 0
-	for i in range(len(ids)) :
-		q= question.objects.filter(id=ids[i])[0]
-		if q.correct == ans[i] :
-			score+=1
-	return score
-
 
 
 
@@ -134,7 +126,8 @@ def quiz(request ):
 				if q not in ques2 :
 					ques2.append(q)
 
-			return render(request , 'front/mcq.html' , {'ques' : ques2})
+
+			return render(request , 'front/mcq.html' , {'ques' : ques2 })
 
 		if request.POST['action']=='submit':
 			ids=[]
@@ -151,8 +144,18 @@ def quiz(request ):
 
 						
 
-			score = evaluate(ids , ans)
-			return render(request , 'front/quizend.html' , {'score' : score})
+			score = 0
+			ques=[]
+			
+			for i in range(len(ids)) :
+				q= question.objects.filter(id=ids[i])[0]
+				ques.append(q)
+				if q.correct == ans[i] :
+					score+=1
+				
+					
+		
+			return render(request , 'front/quizend.html' , {'score' : score , 'ques' : ques , 'ans' : ans})
 
 
 

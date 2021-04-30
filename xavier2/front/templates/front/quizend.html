@@ -4,13 +4,181 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Result</title>
+    <title>Questions</title>
     <script
       src="https://kit.fontawesome.com/9e9cdd5b2b.js"
       crossorigin="anonymous"
     ></script>
     <style>
       * {
+        /* CSS Reset */
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Ubuntu", sans-serif;
+        background: rgb(77, 36, 143);
+      }
+
+      .quiz_box {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .quiz_box {
+        width: 550px;
+        background: #fff;
+        border-radius: 5px;
+        top:150%;
+        transition: all 0.3s ease;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      /*  
+ transform: translate(-50%, -50%) scale(0.9);
+ opacity: 0;
+ pointer-events: none;
+ transition: all 0.3s ease;
+ */
+
+      .quiz_box header {
+        position: relative;
+        z-index: 2;
+        height: 70px;
+        padding: 0 30px;
+        background: #fff;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      .quiz_box header .title {
+        font-size: 20px;
+        font-weight: 600;
+        margin:0 auto;
+      }
+      /*
+      .quiz_box header {
+        color: #004085;
+        background: #cce5ff;
+        border: 1px solid #b8daff;
+        height: 45px;
+        padding: 0 8px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 145px;
+      }
+      
+      .quiz_box header {
+        font-weight: 400;
+        font-size: 17px;
+        user-select: none;
+      }
+      .quiz_box header {
+        font-size: 18px;
+        font-weight: 500;
+        height: 30px;
+        width: 45px;
+        color: #fff;
+        border-radius: 5px;
+        line-height: 30px;
+        text-align: center;
+        background: #343a40;
+        border: 1px solid #343a40;
+        user-select: none;
+      }
+      */
+       .off {
+        padding: 25px 30px 20px 30px;
+        background: white;
+      }
+       .que_text {
+        font-size: 25px;
+        font-weight: 60px;
+      }
+       .option_list {
+        padding: 20px 0px;
+        display: block;
+      }
+       .move {
+        height: 60px;
+        padding: 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid lightgrey;
+      }
+      /*
+.quiz_box section .option_list .option{
+{
+ padding :25px 30px 20px 30px;
+ background:white;
+}
+*/ .option {
+        background: aliceblue;
+        border: 1px solid #84c5fe;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 17px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      
+/*
+      .off .option_list .option.correct {
+        color: green;
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+      }
+      .off .option_list .option.incorrect {
+        color: red;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+      }
+      */
+
+     .option.disabled {
+        pointer-events: none;
+      }
+
+      .option .icon {
+        height: 26px;
+        width: 26px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 13px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        line-height: 24px;
+      }
+      .option a{
+         background-color: red;
+         color:yellow;
+       }
+
+.correct { color: rgb(132, 236, 84) ;
+    
+}
+.wrong { color: red ;
+    
+}
+
+
+
+
+* {
         /* CSS Reset */
         margin: 0px;
         padding: 0px;
@@ -55,13 +223,7 @@
         border-radius: 6px;
       }
 
-      .result_box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
+    
       .result_box {
         background: white;
         border-radius: 5px;
@@ -113,26 +275,114 @@
       .result_box .buttons:hover {
         color: red;
       }
+
+
+      
     </style>
   </head>
   <body>
-    <div class="result_box">
-      <div class="icon">
-        <i class="fas fa-crown"></i>
-      </div>
-      <div class="complete_text">You've completed the Quiz!</div>
-      <div class="score_text">
-        <span
-          >and sorry you got only
-          <p>{{score}}</p>
-          out of
-          <p>5</p></span
-        >
-      </div>
-      <div class="buttons">
-        <button class="restart"><a href="{% url 'quizpage' %} " >Replay quiz</a> </button></button>
-        <button class="quit"><a href="{% url 'mainpage' %} " >Quit Quiz</a> </button></button>
-      </div>
-    </div>
+    <div class="quiz_box">
+      <header>
+        <div class="title">{{ ques.0.get_course_display  }}</div>
+      </header>
+
+        <div class="off" id="1">
+                <div class="que_text">1.  {{ques.0.ques}}  </div>
+                <div class="option_list">
+                    <ul >
+                        <li class="option a {{ ques.0.correct }} {{ans.0}}">{{ ques.0.a1 }} </li>
+                        <li class="option b {{ ques.0.correct }} {{ans.0}}">{{ ques.0.a2 }} </li>
+                        <li class="option c {{ ques.0.correct }} {{ans.0}}">{{ ques.0.a3}} </li>
+                        <li class="option d {{ ques.0.correct }} {{ans.0}}">{{ ques.0.a4}} </li>
+                    </ul>
+        
+                </div>
+            </div>
+            <div class="off" id="2">
+                <div class="que_text">2.  {{ques.1.ques}} </div>
+                <div class="option_list">
+                    <ul >
+                        <li class="option a {{ ques.1.correct }} {{ans.1}}">{{ ques.1.a1  }}</li>
+                        <li class="option b {{ ques.1.correct }} {{ans.1}}">{{ ques.1.a2 }} </li>
+                        <li class="option c {{ ques.1.correct }} {{ans.1}}">{{ ques.1.a3}} </li>
+                        <li class="option d {{ ques.1.correct }} {{ans.1}}">{{ ques.1.a4}} </li>
+                    </ul>
+           
+                </div>
+            </div>
+            <div class="off" id="3">
+                <div class="que_text">3.  {{ques.2.ques}}</div>
+                <div class="option_list">
+                    <ul >
+                        <li class="option a {{ ques.2.correct }} {{ans.2}}">{{ ques.2.a1 }}</li>
+                        <li class="option b {{ ques.2.correct }} {{ans.2}}">{{ ques.2.a2 }} </li>
+                        <li class="option c {{ ques.2.correct }} {{ans.2}}">{{ ques.2.a3}} </li>
+                        <li class="option d {{ ques.2.correct }} {{ans.2}}">{{ ques.2.a4}} </li>
+                    </ul>
+              
+                </div>
+            </div>
+            <div class="off" id="4">
+                <div class="que_text">4.  {{ques.3.ques}} </div>
+                <div class="option_list">
+                    <ul >
+                        <li class="option a {{ ques.3.correct }} {{ans.3}}">{{ ques.3.a1 }}</li>
+                        <li class="option b {{ ques.3.correct }} {{ans.3}}">{{ ques.3.a2 }} </li>
+                        <li class="option c {{ ques.3.correct }} {{ans.3}}">{{ ques.3.a3 }} </li>
+                        <li class="option d {{ ques.3.correct }} {{ans.3}}">{{ ques.3.a4 }} </li>
+                    </ul>
+                              </div>
+            </div>
+            <div class="off" id="5">
+                <div class="que_text">5.  {{ques.4.ques}}</div>
+                <div class="option_list">
+                    <ul >
+                        <li class="option a {{ ques.4.correct }} {{ans.4}}">{{ ques.4.a1 }}</li>
+                        <li class="option b {{ ques.4.correct }} {{ans.4}}">{{ ques.4.a2 }} </li>
+                        <li class="option c {{ ques.4.correct }} {{ans.4}}">{{ ques.4.a3}} </li>
+                        <li class="option d {{ ques.4.correct }} {{ans.4}}">{{ ques.4.a4}} </li>
+                    </ul>
+                 
+                </div>
+            </div>
+
+             <div class="result_box">
+                <div class="icon">
+                  <i class="fas fa-crown"></i>
+                </div>
+                <div class="complete_text">You've completed the Quiz!</div>
+                <div class="score_text">
+                  <span
+                    >and you have scored
+                    <p>{{score}}</p>
+                    out of
+                    <p>5</p></span
+                  >
+                </div>
+                <div class="buttons">
+                  <button class="restart"><a href="{% url 'quizpage' %} " >Replay quiz</a> </button></button>
+                  <button class="quit"><a href="{% url 'mainpage' %} " >Quit Quiz</a> </button></button>
+                </div>
+              </div>
+
+          </div>
+
+
+ <script type="text/javascript">
+    document.querySelectorAll('.option').forEach(item => {
+      
+
+      if (item.className[7] ==  item.className[9] && item.className[11] != 'x' ) { item.classList += ' correct'}
+        else if ( item.className[7] ==  item.className[11]  )  { item.classList += ' wrong'}
+    } )
+
+
+
+
+  </script>
+
   </body>
+
+
+
 </html>

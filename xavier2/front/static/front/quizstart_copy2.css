@@ -8,10 +8,10 @@
 body {
   font-family: "Ubuntu", sans-serif;
 }
+
 .outside {
   display:flex;
-  flex-direction: column;
-  align-items:center;
+  flex-direction: row;
 }
 
 .info_box {
@@ -19,10 +19,7 @@ body {
   display: inline-block;
   margin: 20px;
 }
-.info_box .buttons{
-  display: flex;
-  justify-content: center;
-}
+
 .start_btn button {
   font-size: 25px;
   font-weight: 500;
@@ -68,7 +65,7 @@ body {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 0 30px;
   border-top: 1px solid lightgrey;
 }
@@ -90,10 +87,6 @@ body {
   background-color: #032e52; 
   color: white;
 }
-button.quit{
-  margin-right:5px;
-}
-
 .button_set {
   /* background-color: #032e52;  */
   width: 100%;
@@ -116,7 +109,6 @@ button.quit{
   text-decoration: none;
   color: #314152;
   background-color: #fdce4b;
-  
 }
 .buttons button.quit a {
   text-decoration: none;

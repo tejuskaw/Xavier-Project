@@ -13,11 +13,6 @@
   box-shadow: 5px 8px 2px #888888;
   padding: 15px;
 }
-.forum-item .row:hover{
-  transform: scale(1.01);
-  cursor: pointer;
-
-}
 .product_card {
   width: 250px;
   height: 360px;

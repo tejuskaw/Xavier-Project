@@ -1,0 +1,226 @@
+body{
+    margin: 0px;
+    padding: 0px ;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav {
+    
+    margin: 0px;
+    padding: 0px ;
+    background-color: black;
+}
+
+.nav ul{
+    margin: 0px;
+    padding: 0px ;
+}
+
+.nav ul li{
+    display: inline-block;
+    padding: 1vw ;
+    border-radius: 5px;
+}
+
+
+.nav ul li:hover{
+    background-color: white;
+    }
+.nav ul li:hover a{
+        color: black;
+        }
+
+
+.nav ul li a { text-decoration: none;
+                color: white;}
+
+
+.quiz {
+   
+    
+}
+
+.quiz .on { 
+    text-align: center;
+    font-size: 26px;
+}
+
+
+.quiz .on .question{
+    padding: 15px ;
+    margin-top: 10px;
+}
+
+
+.quiz .on .answer textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px ;
+    height: 200px;
+    width: 40%;
+    overflow: auto;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    border: 2px solid #bebebe;
+    outline: none;
+
+}
+
+.quiz .on .answer textarea:focus{
+    border: 2px solid rgb(120, 228, 120);
+}
+
+.off {display: none;}
+
+
+
+
+.move {
+    height: 80px;
+}
+.move ul{
+    margin: 0px;
+    padding: 0px ;
+}
+.move ul li{
+  display: inline-block;
+  border-radius: 5px;
+  width: 5vw;
+  margin-top: 17px ;
+}
+
+.move ul li:hover{
+    cursor: pointer;
+
+}
+
+.prev{
+    font-size: calc(0.25em + 1vw);
+    margin-left: 5vw;
+    padding: 1vw;
+    text-align: center;
+    background-color: rgb(224, 222, 222);
+}
+
+.next{
+    font-size: calc(0.25em + 1vw);
+    color: rgb(78, 67, 67);
+    padding: 1vw;
+    margin-left: 75vw;
+    text-align: center;
+    background-color: rgb(107, 255, 107);
+}
+
+#submit{
+    text-shadow: none;
+    border: none;
+    outline: none;
+
+    font-size: calc(0.25em + 1vw);
+    text-align: center;
+    border-radius: 5px;
+    padding: 1vw;
+    width: 6vw;
+    position: absolute;
+    left: 47%;
+    top: 75%;
+    background-color: rgb(255, 177, 60);
+
+}
+#submit:hover{
+    cursor: pointer;
+    background-color: rgb(132, 236, 84);
+}
+
+
+.info {
+    margin-top: 130px;
+    text-align: right;
+    margin-right: 50px;
+}
+.info ul li { list-style: none;}
+
+
+
+#time{
+    color: white;
+    position: absolute;
+    margin-left: 67vw;
+}
+
+#time:hover{ color: red ; 
+background-color: black ;}
+
+
+
+.help {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.timeout {color: red ;}
+
+#about {
+    text-align: center;
+    font-size: 25px ;
+}
+
+#contact {
+    text-align: center;
+    font-size: 18px ;
+}
+#contact a{
+    text-decoration: none ;
+    color: rgb(132, 236, 84) ;
+}
+
+#contact text{ color: blue ; }
+
+.ques_im {
+    height: 200px ;
+    position: absolute;
+    margin-left: 5vw;
+    margin-top: 0.7vw;
+    border-radius: 2vw;
+}
+
+.mcq_im {
+    height: 200px ;
+    position: absolute;
+    margin-left: 10vw;
+    margin-top: -20.5vw;
+    border-radius: 2vw;
+}
+
+
+
+
+.answer{  height: 280px;}
+
+.answer ul { padding: 1vw; margin-top: 1vw;}
+
+.option{
+
+    
+    text-shadow: none;
+    border: none;
+    outline: none;
+
+    font-size: calc(0.25em + 1vw);
+    text-align: left;
+    
+    border-radius: 5px;
+    padding: 1vw;
+    margin: 0.5vw;
+    margin-left: 10vw;
+ 
+
+}
+.option:hover{
+    cursor: pointer;
+    color: rgb(255, 177, 60);
+}
+
+.chosen { color: rgb(132, 236, 84)}
