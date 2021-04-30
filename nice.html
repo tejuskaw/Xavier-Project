@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questions</title>
+    <script
+      src="https://kit.fontawesome.com/9e9cdd5b2b.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      * {
+        /* CSS Reset */
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Ubuntu", sans-serif;
+        background: rgb(36, 143, 98);
+      }
+
+
+      .quiz_box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .quiz_box {
+        width: 550px;
+        background: #fff;
+        border-radius: 5px;
+      }
+      /*  
+ transform: translate(-50%, -50%) scale(0.9);
+ opacity: 0;
+ pointer-events: none;
+ transition: all 0.3s ease;
+ */
+
+      .quiz_box header {
+        position: relative;
+        z-index: 2;
+        height: 70px;
+        padding: 0 30px;
+        background: #fff;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      .quiz_box header .title {
+        font-size: 20px;
+        font-weight: 600;
+        margin:0 auto;
+      }
+     
+      .quiz_box .off {
+        padding: 25px 30px 20px 30px;
+        background: white;
+      }
+      .quiz_box .off .que_text {
+        font-size: 25px;
+        font-weight: 60px;
+      }
+      .quiz_box .off .option_list {
+        padding: 20px 0px;
+        display: block;
+      }
+      .quiz_box .move {
+        height: 60px;
+        padding: 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid lightgrey;
+      }
+      
+      .off .option_list .option {
+        background: aliceblue;
+        border: 1px solid #84c5fe;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 17px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .off .option_list .option:hover {
+        color: #004085;
+        background: #cce5ff;
+        border: 1px solid #b8daff;
+      }
+
+      .off .option_list .option.correct {
+        color: green;
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+      }
+
+      .off .option_list .option.incorrect {
+        color: red;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+      }
+
+     .off .option_list .option.disabled {
+        pointer-events: none;
+      }
+
+      .off .option_list .option .icon {
+        height: 26px;
+        width: 26px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 13px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        line-height: 24px;
+      }
+        .quiz_box .move .next_btn {
+        text-align:right;
+        height: 40px;
+        margin-left: 320px;
+        padding: 0 13px;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color:yellow;
+        border-radius: 5px;
+        background: rgb(126, 0, 126);
+        border: 1px solid #007bff;
+        line-height: 10px;
+        pointer-events: none;
+        transform: scale(0.95);
+        transition: all 0.3s ease; 
+      }
+      .quiz_box .move .prev_btn {
+        text-align:left;
+        height: 40px;
+        padding: 0 13px;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        color:yellow;
+        border-radius: 5px;
+        background: rgb(126, 0, 126);
+        border: 1px solid #007bff;
+        line-height: 10px;
+        pointer-events: none;
+        transform: scale(0.95);
+        transition: all 0.3s ease; 
+      }
+      .submit_btn {
+        text-align:center;
+        margin-left:40%;
+        height: 40px;
+        padding: 0 13px;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        color:yellow;
+        border-radius: 5px;
+        background: rgb(126, 0, 126);
+        border: 1px solid #007bff;
+        line-height: 10px;
+        pointer-events: none;
+        
+      }
+
+
+
+      .move .next_btn:hover {
+        background-color:grey;
+      }
+      .move button.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+     .info{
+       position:relative;
+        text-align: center;
+        color:white;
+        margin: 0 auto;
+        
+        margin-top:620px;
+      }
+
+  
+      
+    </style>
+  </head>
+  <body>
+  
+    <div class="quiz_box">
+      <header>
+        <div class="title">Concerned topic</div>
+      </header>
+
+        <div class="off" id="1">
+            <div class="que_text">1) 1+1</div>
+            <div class="option_list">
+              <ul>
+                <li class="option a">a)362462323232</li>
+                <li class="option b">b)123123</li>
+                <li class="option c">c)2</li>
+                <li class="option d">d)35335435</li>
+              </ul>
+              <input type="hidden" value="2:" name="a1" />
+            </div>
+          </div>
+            <!-- footer of Quiz Box -->      
+    <div class="move">
+      <ul>
+          <button class="prev_btn">Previous</button>
+          <button class="next_btn">Next</button>
+          <button class="submit_btn">Submit</button>
+      </ul>
+  </div>
+  </div>
+  <div class="info">
+    <ul>
+        <li id="view">Questions Viewed : 1</li>
+        <li id='answered' >Answered : 0</li>
+        <li id='to_be_answered'>To be answered : 10</li>
+    </ul>
+</div>
+  </body>
+</html>
